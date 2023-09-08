@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>mi primer template</title>
+</head>
+<body>
+    <h1>Bienvenidos</h1>
+    <p>los saluda <strong>{{my_name}} </strong></p>
+    <h3>Mis notas: </h3>
+    <ul>
+        
+        {% for nota in notas %}
+            <li>{{nota}}</li>
+        {% endfor %}
+        
+    </ul>
+</body>
+</html>
