@@ -1,13 +1,14 @@
-from django.forms import ModelForm
+from django.forms import forms, ModelForm
 from appWeb.models import paciente,Profesionalsalud
+from django.db import models
+from django.utils import timezone
 
-class PacienteForm (ModelForm):
+class PacienteForm(ModelForm):  
     class Meta:
         model = paciente
-        fields = ["nombre","apellido","DNI","fecha_de_nacimiento", "email", "direccion","Nro_telefono","ocupacion"]
+        fields = "__all__"
 
 class ProfesionalForm (ModelForm):
     class Meta:
         model = Profesionalsalud
-        fields = ["nombre","apellido","DNI","email","Nro_telefono", "nro_matricula","especialidad"]
-        
+        fields = "__all__"

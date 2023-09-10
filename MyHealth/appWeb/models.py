@@ -4,23 +4,23 @@ from django.utils import timezone
 # Create your models here.
 
 class paciente (models.Model):
-    nombre = models.CharField (max_length=50)
-    apellido = models.CharField (max_length=50)
-    DNI = models.IntegerField()
-    fecha_de_nacimiento = models.DateField( default= timezone.now)
-    email = models.EmailField (null=True, blank=True)
-    direccion = models.CharField (max_length=150)
-    Nro_telefono = models.IntegerField ()
-    ocupacion = models.CharField (max_length=50)
+    nombre = models.CharField (max_length=50, verbose_name="Nombre")
+    apellido = models.CharField (max_length=50, verbose_name="Apellido")
+    DNI = models.IntegerField(verbose_name="DNI")
+    fecha_de_nacimiento = models.DateField( default= timezone.now, verbose_name="Fecha de nacimiento")
+    email = models.EmailField (null=True, blank=True, verbose_name="Direccion de correo electronico")
+    direccion = models.CharField (max_length=150, verbose_name="Domicilio")
+    Nro_telefono = models.IntegerField (verbose_name="Numero de telefono")
+    ocupacion = models.CharField (max_length=50, verbose_name="Ocupacion/profesion")
     
 class Profesionalsalud (models.Model):
-    nombre = models.CharField (max_length=50)
-    apellido = models.CharField (max_length=50)
-    DNI = models.IntegerField()
-    email = models.EmailField (max_length=50)
-    Nro_telefono = models.IntegerField(null=True, blank=True)
-    nro_matricula = models.IntegerField ()
-    especialidad = models.CharField(max_length=50)
+    nombre = models.CharField (max_length=50,verbose_name="Nombre" )
+    apellido = models.CharField (max_length=50, verbose_name="Apellido")
+    DNI = models.IntegerField(verbose_name="DNI")
+    email = models.EmailField (max_length=50, verbose_name="Direccion de correo electronico")
+    Nro_telefono = models.IntegerField(null=True, blank=True, verbose_name="Numero de telefono")
+    nro_matricula = models.IntegerField (verbose_name="Numero de matricula")
+    especialidad = models.CharField(max_length=50, verbose_name="especialidad")
     
 class Turnos (models.Model):
     FECHA_CHOICES = [

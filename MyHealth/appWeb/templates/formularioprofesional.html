@@ -1,0 +1,28 @@
+{% extends 'padre.html' %}
+{% load crispy_forms_tags %}
+{% block cambios %}
+<div>
+    <h1>Ingrese sus datos:</h1>
+    <div>
+        <form action= "" method ="post"> 
+            {% csrf_token %}
+            {{formularioprofesional|crispy}}
+
+            <button type="submit"> Enviar </button> 
+        
+        {% if 'ok' in request.GET %}
+            <div class="alert alert-success mt-5" role="alert">
+                <strong>Datos cargados correctamente</strong>
+            </div>
+        {% endif %}
+        {% if 'error' in request.GET %}
+            <div class="alert alert-danger mt-5" role="alert">
+                <strong>Datos cargados incorrectamente. Por favor, intente nuevamente.</strong>
+            </div>
+        {% endif %}
+    </div>
+        </form>
+        
+        
+</div>
+{% endblock cambios %}

@@ -1,30 +1,43 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .forms import PacienteForm, ProfesionalForm
 from .models import paciente
 # Create your views here.
 def Inicio (req):
     return render (req, ("inicio.html"))
 
+def Pacientes (req):
+        return render (req, ("pacientes.html"))
+
+def Profesionales (req):
+        return render (req, ("profesionales.html"))
+
+def Turnos (req):
+        return render (req, ("turnos.html"))
+
+
+
+
 def formulariopaciente (req):
-    print ("method", req.method)
-    print ("POST", req.POST)
-    
+    F_paciente = PacienteForm ()
     if req.method == "POST":
-        F_paciente = PacienteForm (req.POST)
+        F_paciente = PacienteForm (data=req.POST)
         if F_paciente.is_valid ():
-            data = F_paciente.cleaned_data
-            info_paciente = paciente (
-                nombre=data["nombre"], 
-                apellido=data["apellido"], 
-                DNI =data["DNI"], 
-                fecha_de_nacimiento =data["fecha_de_nacimiento"], 
-                email=data["email"],
-                direccion=data["direccion"],
-                Nro_telefono=data["Nro_telefono"],
-                ocupacion=data["ocupacion"],
-                )
-            info_paciente.save ()
-            return render (req, "inicio.html")
-    else:
-        F_paciente = PacienteForm ()
-        return render(req, "formulariopaciente.html", {"Formulario_paciente": F_paciente})
+            PacienteForm.save ()
+            return redirect (reverse('formulariopaciente')+'?ok',)
+        else:
+            return redirect (reverse('formulariopaciente')+'?error',)
+
+    return render(req, "formulariopaciente.html", {"formulariopaciente": F_paciente})
+
+def formularioprofesional (req):
+    F_profesional = ProfesionalForm ()
+    if req.method == "POST":
+        F_profesional = ProfesionalForm (data=req.POST)
+        if F_profesional.is_valid ():
+            ProfesionalForm.save ()
+            return redirect (reverse('formularioprofesional')+'?ok',)
+        else:
+            return redirect (reverse('formularioprofesional')+'?error',)
+
+    return render(req, "formularioprofesional.html", {"formularioprofesional": F_profesional})
