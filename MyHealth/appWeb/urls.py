@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import Inicio
+from .views import Inicio, formulariopaciente
 urlpatterns = [
-    path('', Inicio),
+    path('home/', Inicio),
+    path ('formulariopaciente/', formulariopaciente, name= "formulariopaciente" )
 ]

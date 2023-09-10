@@ -1,19 +1,19 @@
 from django.db import models
 from django import forms
-
+from django.utils import timezone
 # Create your models here.
 
 class paciente (models.Model):
     nombre = models.CharField (max_length=50)
     apellido = models.CharField (max_length=50)
     DNI = models.IntegerField()
-    fecha_de_nacimiento = models.DateField()
+    fecha_de_nacimiento = models.DateField( default= timezone.now)
     email = models.EmailField (null=True, blank=True)
     direccion = models.CharField (max_length=150)
     Nro_telefono = models.IntegerField ()
     ocupacion = models.CharField (max_length=50)
     
-class Profesional_salud (models.Model):
+class Profesionalsalud (models.Model):
     nombre = models.CharField (max_length=50)
     apellido = models.CharField (max_length=50)
     DNI = models.IntegerField()
@@ -57,10 +57,10 @@ class Turnos (models.Model):
         ('12:00', '12:00 AM'),
         ('12:30', '12:30 AM'),
     ]
-    horario = models.CharField (max_length=5, null=False, choices= HORARIOS_CHOICES)
-    fecha = models.CharField (max_length=10, null=False, choices= FECHA_CHOICES)
+    horario = models.CharField (max_length=5, default= timezone.now, choices= HORARIOS_CHOICES)
+    fecha = models.CharField (max_length=10, default= timezone.now, choices= FECHA_CHOICES)
     paciente = models.ForeignKey (paciente, on_delete =models.CASCADE)
-    profesional = models.ForeignKey (Profesional_salud, on_delete =models.CASCADE)
+    profesional = models.ForeignKey (Profesionalsalud, on_delete =models.CASCADE)
 
 class Turnospaciente (models.Model):
     paciente = models.ForeignKey (paciente, on_delete =models.CASCADE )
@@ -68,7 +68,7 @@ class Turnospaciente (models.Model):
     
 
 class Turnosprofesional (models.Model):
-    profesional = models.ForeignKey (Profesional_salud, on_delete =models.CASCADE )
+    profesional = models.ForeignKey (Profesionalsalud, default= "a designar", on_delete =models.CASCADE )
     turnos_designados = models.ManyToManyField (Turnos)
 
 #AGREGAR he datetime and django.utils.timezone modules are available, so it is possible to provide e.g. timezone.now as a value. En fecha.

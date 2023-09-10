@@ -1,0 +1,11 @@
+{% extends 'padre.html' %}
+
+{% block cambios %}
+    <form action= "{% url 'formulariopaciente' %}" method ="post"> 
+        {% csrf_token %}
+        {{F_paciente.as_p}}
+        <button type="submit"> Enviar </button>
+    </form>
+{% endblock cambios %}
+
+    
