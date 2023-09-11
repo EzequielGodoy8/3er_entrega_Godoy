@@ -13,6 +13,9 @@ class paciente (models.Model):
     Nro_telefono = models.IntegerField (verbose_name="Numero de telefono")
     ocupacion = models.CharField (max_length=50, verbose_name="Ocupacion/profesion")
     
+    def __str__(self):
+        return f'{self.nombre} {self.apellido} - {self.DNI}'
+    
 class Profesionalsalud (models.Model):
     nombre = models.CharField (max_length=50,verbose_name="Nombre" )
     apellido = models.CharField (max_length=50, verbose_name="Apellido")
@@ -21,6 +24,9 @@ class Profesionalsalud (models.Model):
     Nro_telefono = models.IntegerField(null=True, blank=True, verbose_name="Numero de telefono")
     nro_matricula = models.IntegerField (verbose_name="Numero de matricula")
     especialidad = models.CharField(max_length=50, verbose_name="especialidad")
+    
+    def __str__(self):
+        return f'{self.nombre} {self.apellido} - {self.especialidad}'
     
 class Turnos (models.Model):
     FECHA_CHOICES = [
@@ -62,13 +68,20 @@ class Turnos (models.Model):
     paciente = models.ForeignKey (paciente, on_delete =models.CASCADE)
     profesional = models.ForeignKey (Profesionalsalud, on_delete =models.CASCADE)
 
+    def __str__(self):
+        return f'{self.fecha} {self.horario} {self.profesional}, paciente: {self.paciente}'
+    
 class Turnospaciente (models.Model):
     paciente = models.ForeignKey (paciente, on_delete =models.CASCADE )
     turnos_Adquiridos = models.ManyToManyField (Turnos)
     
-
+    def __str__(self):
+        return f'Turnos adquiridos por {self.paciente}: {self.turnos_Adquiridos}'
+    
 class Turnosprofesional (models.Model):
     profesional = models.ForeignKey (Profesionalsalud, default= "a designar", on_delete =models.CASCADE )
     turnos_designados = models.ManyToManyField (Turnos)
 
-#AGREGAR he datetime and django.utils.timezone modules are available, so it is possible to provide e.g. timezone.now as a value. En fecha.
+    def __str__(self):
+        return f'Turnos designados hacia {self.profesional}: {self.turnos_designados}'
+    

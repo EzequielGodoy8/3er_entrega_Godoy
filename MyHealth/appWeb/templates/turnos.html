@@ -1,0 +1,17 @@
+{% extends 'padre.html' %}
+{% block cambios %}
+
+<body>
+    <h1>Area de turnos</h1>
+    <p>Bienvenidos!</p>
+</body>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Formularioadquirirturnos' %}">Sacar turnos</a>
+        <li class="nav-item active">
+            <a class="nav-link" href="formulario.html">Consultar turnos</a>  
+           </li>
+    </ul>
+</div>
+{% endblock cambios %}
