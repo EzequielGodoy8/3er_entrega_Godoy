@@ -1,0 +1,14 @@
+{% extends 'padre.html' %}
+{% block cambios %}
+<div>
+    <hr>
+    <h3> Resultados de la busqueda de pacientes: </h3>
+        {% for paciente in busquedapaciente %}
+            <p> Nombre: {{paciente.nombre}} </p>
+            <p> Apellido: {{paciente.apellido}} </p>
+            <p> DNI: {{paciente.DNI}} </p>
+            <hr>
+        {% endfor %}
+    <hr>
+</div>
+{% endblock cambios %}

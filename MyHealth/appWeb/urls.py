@@ -9,7 +9,11 @@ urlpatterns = [
     path('turnos/', Turnos, name= 'Turnos'),
     path ('formulariopaciente/', formulariopaciente, name= 'Formulariopaciente' ),
     path ('formularioprofesional/', formularioprofesional, name= 'Formularioprofesional' ),
-    path ('formularioadquirirturnos/', formularioadquirirturnos, name= 'Formularioadquirirturnos' )
+    path ('formularioadquirirturnos/', formularioadquirirturnos, name= 'Formularioadquirirturnos' ),
+    path ('busquedapacientes/', busquedapacientes, name= 'Busquedapacientes' ),
+    path ('buscarpacientes/', buscarpacientes, name= 'Buscarpacientes' ),
+    path ('consultarturnos/', Consultarturnos, name= 'Consultarturnos' ),
+
 
 ]
 

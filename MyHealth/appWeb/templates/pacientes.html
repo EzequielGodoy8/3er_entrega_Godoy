@@ -3,6 +3,7 @@
 {% block cambios %}
 
 <body>
+    <hr>
     <h1>Area de Pacientes</h1>
     <p>Bienvenidos!</p>
 </body>
@@ -13,7 +14,7 @@
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'Formularioadquirirturnos' %}">Sacar turnos</a>
         <li class="nav-item active">
-            <a class="nav-link" href="formulario.html">Consultar turnos</a>  
+            <a class="nav-link" href="{% url 'Consultarturnos' %}">Consultar turnos</a>  
            </li>
     </ul>
 </div>

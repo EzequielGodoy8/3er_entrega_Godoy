@@ -30,10 +30,6 @@ class Profesionalsalud (models.Model):
     
 class Turnos (models.Model):
     FECHA_CHOICES = [
-        ('2023-09-10', '10 de Septiembre de 2023'),
-        ('2023-09-11', '11 de Septiembre de 2023'),
-        ('2023-09-12', '12 de Septiembre de 2023'),
-        ('2023-09-13', '13 de Septiembre de 2023'),
         ('2023-09-14', '14 de Septiembre de 2023'),
         ('2023-09-15', '15 de Septiembre de 2023'),
         ('2023-09-16', '16 de Septiembre de 2023'),
@@ -72,15 +68,15 @@ class Turnos (models.Model):
         return f'{self.fecha} {self.horario} {self.profesional}, paciente: {self.paciente}'
     
 class Turnospaciente (models.Model):
-    paciente = models.ForeignKey (paciente, on_delete =models.CASCADE )
-    turnos_Adquiridos = models.ManyToManyField (Turnos)
+    paciente = models.ForeignKey (paciente, on_delete =models.CASCADE)
+    turnos_Adquiridos = models.ManyToManyField (Turnos, verbose_name="Turnos adquiridos")
     
     def __str__(self):
         return f'Turnos adquiridos por {self.paciente}: {self.turnos_Adquiridos}'
     
 class Turnosprofesional (models.Model):
     profesional = models.ForeignKey (Profesionalsalud, default= "a designar", on_delete =models.CASCADE )
-    turnos_designados = models.ManyToManyField (Turnos)
+    turnos_designados = models.ManyToManyField (Turnos, verbose_name="Turnos designados")
 
     def __str__(self):
         return f'Turnos designados hacia {self.profesional}: {self.turnos_designados}'

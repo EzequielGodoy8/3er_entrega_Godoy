@@ -1,0 +1,16 @@
+{% extends 'padre.html' %}
+{% block cambios %}
+<div>
+    <hr>
+    <h1>Buscar pacientes:</h1>
+    <div>
+        <form action= "{% url 'Buscarpacientes' %}" method ="get"> 
+
+            <p> Nombre: <input type ="search" name = "nombre" ></p>
+            <button type="submit"> Enviar </button>        
+    </div>
+        </form>
+        
+        
+</div>
+{% endblock cambios %}
